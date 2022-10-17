@@ -1,0 +1,9 @@
+SELECT p.apellido1,p.apellido2,p.nombre FROM persona AS p WHERE p.tipo = 'alumno' ORDER BY apellido1 ASC,apellido2 ASC,p.nombre ASC;
+SELECT p.nombre,p.apellido1,p.apellido2 FROM persona AS p WHERE p.tipo = 'alumno' AND p.telefono IS NULL;
+SELECT p.* FROM persona AS p WHERE p.tipo = 'alumno' AND YEAR(p.fecha_nacimiento) = '1999';
+SELECT p.* FROM persona AS p WHERE p.tipo = 'profesor' AND p.telefono IS NULL AND p.nif LIKE '%K';
+SELECT a.* FROM asignatura AS a WHERE a.cuatrimestre = 1 AND a.curso = 3 AND a.id_grado = 7;
+SELECT pers.*,dep.nombre AS 'departamento' FROM persona AS pers INNER JOIN profesor AS prof ON pers.id = prof.id_profesor INNER JOIN departamento AS dep ON dep.id = prof.id_departamento;
+SELECT asignatura.nombre, curso_escolar.anyo_inicio, curso_escolar.anyo_fin FROM asignatura INNER JOIN alumno_se_matricula_asignatura ON asignatura.id = alumno_se_matricula_asignatura.id_asignatura INNER JOIN persona ON persona.id = alumno_se_matricula_asignatura.id_alumno INNER JOIN curso_escolar ON curso_escolar.id = alumno_se_matricula_asignatura.id_curso_escolar WHERE persona.nif = '26902806M';
+SELECT d.nombre,p.id_profesor FROM departamento AS d INNER JOIN profesor AS p ON d.id = p.id_departamento INNER JOIN asignatura AS s ON p.id_profesor = s.id_profesor INNER JOIN grado AS g ON s.id_grado = g.id WHERE g.nombre = 'Grado en Ingeniería Informática (Plan 2015)';
+SELECT DISTINCT p.* FROM persona AS p INNER JOIN alumno_se_matricula_asignatura AS m ON p.id = m.id_alumno INNER JOIN curso_escolar AS c ON m.id_curso_escolar = c.id WHERE c.anyo_inicio >= '2018' AND c.anyo_fin <= '2019';

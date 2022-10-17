@@ -1,0 +1,6 @@
+SELECT departamento.nombre AS 'nombre departamento',persona.apellido1,persona.apellido2,persona.nombre FROM departamento RIGHT JOIN profesor ON departamento.id = profesor.id_departamento RIGHT JOIN persona ON profesor.id_profesor = persona.id ORDER BY departamento.nombre;
+SELECT persona.apellido1,persona.apellido2,persona.nombre FROM departamento RIGHT JOIN profesor ON departamento.id = profesor.id_departamento RIGHT JOIN persona ON profesor.id_profesor = persona.id WHERE profesor.id_departamento IS NULL;
+SELECT DISTINCT departamento.nombre FROM departamento  INNER JOIN profesor ON departamento.id = profesor.id_departamento;
+SELECT persona.* FROM persona INNER JOIN profesor ON persona.id = profesor.id_profesor INNER JOIN asignatura ON profesor.id_profesor != asignatura.id_profesor;
+SELECT DISTINCT asignatura.* FROM asignatura LEFT JOIN profesor ON asignatura.id_profesor = profesor.id_profesor WHERE asignatura.id_profesor IS NULL;
+SELECT DISTINCT departamento.nombre FROM departamento LEFT JOIN profesor ON departamento.id != profesor.id_departamento INNER JOIN asignatura ON profesor.id_profesor = asignatura.id_profesor INNER JOIN curso_escolar ON asignatura.curso = curso_escolar.id;
